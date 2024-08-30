@@ -620,8 +620,7 @@ class Program
 			if (i == 0 && digits[i] == 9)
 			{
 				int[] firstIndexZero = new int[len + 1];
-				firstIndexZero[0] = 1;
-				firstIndexZero = digits;
+				firstIndexZero[i] = 1;
 				return firstIndexZero;
 			}
 			if (digits[i] < 9)
