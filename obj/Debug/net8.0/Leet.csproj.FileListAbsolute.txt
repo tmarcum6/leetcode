@@ -1,0 +1,14 @@
+c:\Users\marcu\Desktop\Leet\bin\Debug\net8.0\Leet.exe
+c:\Users\marcu\Desktop\Leet\bin\Debug\net8.0\Leet.deps.json
+c:\Users\marcu\Desktop\Leet\bin\Debug\net8.0\Leet.runtimeconfig.json
+c:\Users\marcu\Desktop\Leet\bin\Debug\net8.0\Leet.dll
+c:\Users\marcu\Desktop\Leet\bin\Debug\net8.0\Leet.pdb
+c:\Users\marcu\Desktop\Leet\obj\Debug\net8.0\Leet.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\marcu\Desktop\Leet\obj\Debug\net8.0\Leet.AssemblyInfoInputs.cache
+c:\Users\marcu\Desktop\Leet\obj\Debug\net8.0\Leet.AssemblyInfo.cs
+c:\Users\marcu\Desktop\Leet\obj\Debug\net8.0\Leet.csproj.CoreCompileInputs.cache
+c:\Users\marcu\Desktop\Leet\obj\Debug\net8.0\Leet.dll
+c:\Users\marcu\Desktop\Leet\obj\Debug\net8.0\refint\Leet.dll
+c:\Users\marcu\Desktop\Leet\obj\Debug\net8.0\Leet.pdb
+c:\Users\marcu\Desktop\Leet\obj\Debug\net8.0\Leet.genruntimeconfig.cache
+c:\Users\marcu\Desktop\Leet\obj\Debug\net8.0\ref\Leet.dll
