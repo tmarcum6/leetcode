@@ -108,8 +108,12 @@ class Program
 		// FizzBuzz(n);
 
 		//Plus One
-		int[] digits = [9];
-		PlusOne(digits);
+		// int[] digits = [9];
+		// PlusOne(digits);
+
+		//Climbing Stairs
+		int n = 3;
+		ClimbStairs(n);
 
 	}
 
@@ -633,6 +637,17 @@ class Program
 
 		int[] newNum = new int[len + 1];
 		return newNum;
+	}
+
+	//Climbing Stairs
+	public static int ClimbStairs(int n)
+	{
+		int[] tab = new int[n + 1];
+		if (tab.Length > 0) tab[0] = 1;
+		if (tab.Length > 1) tab[1] = 1;
+		for (int i = 2; i < tab.Length; i++)
+			tab[i] = tab[i - 1] + tab[i - 2];
+		return tab[n];
 	}
 
 	#endregion
