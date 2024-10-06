@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.Design;
+using System.Reflection;
+using System.Text;
 
 namespace Leet;
 
@@ -112,12 +114,73 @@ class Program
 		// PlusOne(digits);
 
 		//Climbing Stairs
-		int n = 3;
-		ClimbStairs(n);
+		// int n = 3;
+		// ClimbStairs(n);
 
+		// Remove Duplicates from Sorted List
+		//[1,1,2,3,3]
+		// ListNode head = new ListNode(1);
+		// head.next = new ListNode(1);
+		// head.next.next = new ListNode(2);
+		// head.next.next.next = new ListNode(3);
+		// head.next.next.next.next = new ListNode(3);
+		// DeleteDuplicates(head);
+
+		// Remove Duplicates from Sorted List II
+		// ListNode head = new ListNode(1);
+		// head.next = new ListNode(1);
+		// head.next.next = new ListNode(1);
+		// head.next.next.next = new ListNode(2);
+		// head.next.next.next.next = new ListNode(3);
+		// DeleteDuplicatesII(head);
+
+		// Search in Rotated Sorted Array II
+		// int[] nums = [2, 5, 6, 0, 0, 1, 2];
+		// int target = 0;
+		// Search(nums, target);
+
+		//Reverse Words in a String
+		// string s = "the sky is blue";
+		// string s2 = "a good   example";
+		// ReverseWords(s2);
+
+		// Missing Number
+		// int[] nums = [3, 0, 1];
+		// MissingNumber(nums);
+
+		//Convert Sorted Array to Binary Search Tree
+		// int[] nums = [-10, -3, 0, 5, 9];
+		// SortedArrayToBST(nums);
+
+		// // Reverse String
+		// char[] chars = ['h', 'e', 'l', 'l', 'o'];
+		// ReverseString(chars);
+
+		// Reverse Linked List
+		//[1, 2, 3, 4, 5]
+		// ListNode head = new ListNode(1);
+		// head.next = new ListNode(2);
+		// head.next.next = new ListNode(3);
+		// head.next.next.next = new ListNode(4);
+		// head.next.next.next.next = new ListNode(5);
+		// ReverseList(head);
+
+		// Reverse Bits
+		// uint n = 43261596;
+		// ReverseBits(n);
+
+		// Happy Number
+		// int n = 11;
+		// IsHappy(n);
+
+		// Single Number
+		// int[] nums = [2, 2, 1]; //[4, 1, 2, 1, 2];
+		// SingleNumber(nums);
+
+		// Move Zeroes
+		int[] nums = [0, 1, 0, 3, 12];
+		MoveZeroes(nums);
 	}
-
-	#region Arrays
 
 	//Merge Sorted Array
 	public static void Merge(int[] nums1, int m, int[] nums2, int n)
@@ -271,14 +334,9 @@ class Program
 		return 1;
 	}
 
-	#endregion
-
-	#region Lists
-
 	//Linked List Cycle (Tortoise & Hare) *needs more work
 	public static bool HasCycle(ListNode head)
 	{
-
 		ListNode slow_pointer = head, fast_pointer = head;
 		while (fast_pointer != null && fast_pointer.next != null)
 		{
@@ -329,10 +387,6 @@ class Program
 			return head;
 		}
 	}
-
-	#endregion
-
-	#region Binary Search
 
 	//Guess Number Higher or Lower
 	//Binary Search O(log n)
@@ -639,19 +693,245 @@ class Program
 		return newNum;
 	}
 
-	//Climbing Stairs
+	//Climbing Stairs (Fibonacci Number)
 	public static int ClimbStairs(int n)
 	{
-		int[] tab = new int[n + 1];
-		if (tab.Length > 0) tab[0] = 1;
-		if (tab.Length > 1) tab[1] = 1;
-		for (int i = 2; i < tab.Length; i++)
-			tab[i] = tab[i - 1] + tab[i - 2];
-		return tab[n];
+		if (n == 1) return 1;
+
+		int prev2 = 1, prev1 = 2;
+		for (int i = 3; i <= n; i++)
+		{
+			int current = prev1 + prev2;
+			prev2 = prev1;
+			prev1 = current;
+		}
+
+		return prev1;
 	}
 
-	#endregion
+	// Remove Duplicates from Sorted List
+	public static ListNode DeleteDuplicates(ListNode head)
+	{
+		if (head != null)
+		{
+			ListNode p = head;
+			while (p.next != null)
+			{
+				if (p.val == p.next.val)
+				{
+					ListNode temp = p.next;
+					p.next = temp.next;
+				}
+				else p = p.next;
+			}
+		}
+
+		return head;
+	}
+
+	// Remove Duplicates from Sorted List II *needs more work
+	public static ListNode DeleteDuplicatesII(ListNode head)
+	{
+		ListNode p = head;
+		if (head != null)
+		{
+			while (p.next != null && p.next.next != null)
+			{
+				if (p.val == p.next.val)
+				{
+					ListNode temp = p;
+					p = temp.next;
+				}
+				else if (p.next.val == p.next.next.val)
+				{
+					ListNode temp = p.next;
+					p.next = temp.next.next;
+				}
+				else p = p.next;
+			}
+		}
+
+		return p;
+	}
+
+	// Serach in Rotated Sorted Array II *** do without contains
+	public static bool Search(int[] nums, int target)
+	{
+		List<int> list = new List<int>();
+		list = nums.ToList();
+		if (list.Contains(target)) return true;
+		return false;
+	}
+
+	// 	int low = 0, high = nums.Length - 1;
+
+	//         while (low <= high) {
+	//             int mid = (low + high) / 2;
+	//             if (nums[mid] == target) return true;
+
+	//             if (nums[low] == nums[mid]) {
+	//                 low++;
+	//                 continue;
+	//             }
+
+	//             if (nums[low] <= nums[mid]) {
+	//                 if (nums[low] <= target && target <= nums[mid]) high = mid - 1;
+	//                 else low = mid + 1;
+	//             } else
+	// {
+	// 	if (nums[mid] <= target && target <= nums[high]) low = mid + 1;
+	// 	else high = mid - 1;
+	// }
+	//         }
+	//         return false;
+
+	// Reverse Words in a String
+	public static string ReverseWords(string s)
+	{
+		string[] words = s.Trim().Split(' ');
+		StringBuilder reverse = new(words.Length); // mutatable string of chars
+		for (int i = words.Length - 1; i >= 0; i--)
+		{
+			if (string.IsNullOrWhiteSpace(words[i]))
+				continue;
+			reverse.Append(" " + words[i]);
+		}
+		return reverse.ToString().Trim();
+	}
+
+	// Missing Number
+	public static int MissingNumber(int[] nums)
+	{
+		Array.Sort(nums);
+		int n = nums.Length;
+		if (nums[0] != 0) return 0;
+		if (nums[nums.Length - 1] != n) return n;
+		for (int i = 0; i < n - 1; i++)
+		{
+			if (nums[i + 1] != i + 1) return i + 1;
+		}
+
+		return 0;
+	}
+
+	//Convert Sorted Array to Binary Search Tree
+	public static TreeNode SortedArrayToBST(int[] nums)
+	{
+		if (nums.Length <= 0)
+			return null;
+
+		int mid = nums.Length / 2;
+		var tree = new TreeNode(nums[mid]);
+		tree.left = SortedArrayToBST(nums[..mid]);
+		tree.right = SortedArrayToBST(nums[(mid + 1)..]);
+
+		return tree;
+	}
+
+	// Reverse String
+	public static void ReverseString(char[] s)
+	{
+		int i = 0;
+		int j = s.Length - 1;
+		while (i < j)
+		{
+			char t = s[i];
+			s[i] = s[j];
+			s[j] = t;
+			i++;
+			j--;
+		}
+	}
+
+	// Reverse Linked List
+	public static ListNode ReverseList(ListNode head)
+	{
+		ListNode t = null;
+		while (head != null)
+		{
+			ListNode nextNode = head.next;
+			head.next = t;
+			t = head;
+			head = nextNode;
+		}
+
+		return t;
+	}
+
+	// Reverse Bits **need to come back to this
+	public static uint ReverseBits(uint n)
+	{
+		int t = Convert.ToInt32(n);
+		string bits = Convert.ToString(t, 2);
+		bits.Reverse();
+		n = Convert.ToUInt32(bits, 2);
+		return n;
+	}
+
+	// Happy Number **needs improvement
+	public static bool IsHappy(int n)
+	{
+		double sum = 0;
+		List<double> eLoop = new List<double>();
+		if (n == 1 || n == 7) return true;
+		if (n > 9)
+		{
+			while (sum != 1)
+			{
+				sum = 0;
+				string s = n.ToString();
+				foreach (var c in s)
+				{
+					double d = Char.GetNumericValue(c);
+					sum += d * d;
+					n = Convert.ToInt32(sum);
+				}
+				if (eLoop.Contains(sum))
+					return false;
+				eLoop.Add(sum);
+			}
+		}
+
+		return sum == 1;
+	}
+
+	// Single Number
+	public static int SingleNumber(int[] nums)
+	{
+		Array.Sort(nums);
+		int len = nums.Length;
+
+		if (len > 1)
+		{
+			if (nums[0] != nums[1]) return nums[0]; // first num
+			if (nums[len - 1] != nums[len - 2]) return nums[len - 1]; // last num
+			for (int i = 1; i < len - 1; i++) //one of the interrior nums
+			{
+				if (nums[i] != nums[i - 1] && nums[i] != nums[i + 1]) return nums[i];
+			}
+		}
+
+		return nums[0];
+	}
+
+	// Move Zeroes
+	public static void MoveZeroes(int[] nums)
+	{
+		int pos = 0;
+		int len = nums.Length;
+		if (len > 1)
+		{
+			for (int i = 0; i < len; i++)
+			{
+				if (nums[i] != 0)
+				{
+					int t = nums[i];
+					nums[i] = nums[pos];
+					nums[pos] = t;
+					pos++;
+				}
+			}
+		}
+	}
 
 }
-
-
